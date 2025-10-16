@@ -1,0 +1,68 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/yuhang0123/Homework-9-Dataset/refs/heads/main/Bitcoin%20Annual%20Return.csv"
+  },
+  "vconcat": [
+    {
+      "width": 800,
+      "height": 600,
+      "title": "Bitcoin Annual Return (2014–2025)",
+      "transform": [{"filter": {"param": "year_brush"}}],
+      "layer": [
+        {
+          "mark": {"type": "line", "point": true, "color": "yellow"},
+          "encoding": {
+            "x": {"field": "Year", "type": "ordinal", "title": "Year"},
+            "y": {"field": "Return", "type": "quantitative", "title": "Annual Return (%)"},
+            "tooltip": [
+              {"field": "Year", "type": "ordinal", "title": "Year"},
+              {"field": "Return", "type": "quantitative", "title": "Annual Return (%)"}
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 25,
+            "dy": -20,
+            "color": "#ff3333",
+            "fontSize": 13,
+            "fontWeight":"bold"
+          },
+          "encoding": {
+            "x": {"datum": 2017},
+            "y": {"datum": 1368.9},
+            "text": {"value": "2017: ICO Boom & Mainstream Media Hype"}
+          }
+        }
+      ]
+    },
+    {
+      "width": 800,
+      "height": 80,
+      "mark": "line",
+      "title": "Filter Bitcoin Returns by Year Range",
+      "params": [
+        {
+          "name": "year_brush",
+          "select": {"type": "interval", "encodings": ["x"]}
+        }
+      ],
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal", "axis": {"title": "Year"}},
+        "y": {
+          "aggregate": "mean",
+          "field": "Return",
+          "title": "Average Return (%)",
+          "axis": {"grid": false}
+        }
+      }
+    }
+  ],
+  "config": {
+    "title": {"font": "serif", "fontSize": 18},
+    "axis": {"labelFont": "sans-serif", "titleFont": "sans-serif"}
+  }
+}

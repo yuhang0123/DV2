@@ -1,0 +1,132 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 600,
+  "config": {
+    "font": "sans-serif",
+    "axis": {
+      "labelFont": "sans-serif",
+      "titleFont": "sans-serif",
+      "titleFontSize": 12,
+      "labelFontSize": 10
+    },
+    "legend": {
+      "labelFont": "sans-serif",
+      "titleFont": "sans-serif",
+      "titleFontSize": 14,
+      "labelFontSize": 12,
+      "titlePadding": 10
+    }
+  },
+  "params": [{
+    "name": "continent_select",
+    "value": "Africa",
+    "bind": {
+      "input": "select",
+      "options": [
+        "Africa",
+        "Asia",
+        "Europe",
+        "North America",
+        "Oceania",
+        "South America"
+      ],
+      "name": "Select Continent: "
+    }
+  }],
+  "data": {
+    "url": "https://raw.githubusercontent.com/yuhang0123/Homework-9-Dataset/refs/heads/main/crypto%20ownership%20-%20bitcoin-ownership-by-country-2025.csv"
+  },
+  "transform": [
+    {
+      "lookup": "country_code",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/yuhang0123/Homework-9-Dataset/refs/heads/main/country-and-continent-codes-list-csv.csv"
+        },
+        "key": "Two_Letter_Country_Code",
+        "fields": ["Continent_Name"]
+      }
+    },
+    {"filter": "datum.Continent_Name == continent_select"}
+  ],
+  "layer": [
+    {
+      "mark": {"type": "bar", "color":"goldenrod"},
+      "encoding": {
+        "x": {
+          "field": "Bitcoin Ownership (%)",
+          "type": "quantitative",
+          "title": "Population Owning Crypto (%)",
+          "scale": {"zero": true},
+          "axis": {"format": ".0%", "tickCount": 6}
+        },
+        "y": {
+          "field": "country",
+          "type": "nominal",
+          "title": "Country",
+          "sort": "-x"
+        },
+        "tooltip": [
+          {"field": "country", "type": "nominal", "title": "Country"},
+          {"field": "Continent_Name", "type": "nominal", "title": "Continent"},
+          {
+            "field": "Bitcoin Ownership (%)",
+            "type": "quantitative",
+            "title": "Bitcoin Ownership",
+            "format": ".2%"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "joinaggregate": [{
+            "op": "mean",
+            "field": "Bitcoin Ownership (%)",
+            "as": "continent_avg"
+          }]
+        },
+        {
+          "window": [{"op": "row_number", "as": "row_num"}]
+        },
+        {"filter": "datum.row_num == 1"},
+        {
+          "calculate": "'Average Population: ' + format(datum.continent_avg, '.1%')",
+          "as": "avg_label"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "color": "red",
+            "strokeDash": [4, 4],
+            "size": 2
+          },
+          "encoding": {
+            "x": {"field": "continent_avg", "type": "quantitative"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "bottom",
+            "dy": -5,
+            "dx": 5,
+            "color": "red",
+            "fontSize": 13,
+            "fontWeight": "bold"
+          },
+          "encoding": {
+            "x": {"field": "continent_avg", "type": "quantitative"},
+            "text": {"field": "avg_label", "type": "nominal"},
+            "y": {"value": 0}
+          }
+        }
+      ]
+    }
+  ]
+}

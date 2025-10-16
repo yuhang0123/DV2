@@ -1,0 +1,47 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Annual Return of Different Investment Assets (2021–2023)",
+  "repeat": ["2021", "2022", "2023"],
+  "columns": 1,
+  "spec": {
+    "width": 400,
+    "height": 300,
+    "data": {
+      "url": "https://raw.githubusercontent.com/yuhang0123/Homework-9-Dataset/refs/heads/main/Investment%20Assets%20Performance.csv"
+    },
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "field": "Asset",
+        "type": "nominal",
+        "title": "Investment Asset",
+        "axis": {"labelAngle": -30}
+      },
+      "y": {
+        "field": {"repeat": "repeat"},
+        "type": "quantitative",
+        "title": "Annual Return",
+        "axis": {"format": ".0%"}
+      },
+      "color": {
+        "field": "Asset",
+        "type": "nominal",
+        "legend": null
+      },
+      "tooltip": [
+        {"field": "Asset", "type": "nominal", "title": "Asset"},
+        {
+          "field": {"repeat": "repeat"},
+          "type": "quantitative",
+          "title": "Annual Return",
+          "format": ".1%"
+        }
+      ]
+    }
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {"labelFontSize": 12, "titleFontSize": 13},
+    "title": {"fontSize": 18, "fontWeight": "bold"}
+  }
+}

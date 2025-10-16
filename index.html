@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financial and Cryptocurrency Dashboard</title>
+
+  <!-- Vega Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <!-- Simple Styles -->
+  <style>
+    /* A4-friendly styling */
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f6fa;
+      color: #222;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* A4 Poster Container */
+    .a4-poster {
+      width: 100%; /* A4 width */
+      min-height: 297mm; /* A4 height */
+      background: white;
+      box-shadow: 0 0 20px rgba(0,0,0,0.15);
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background: #283593;
+      color: white;
+      padding: 1.5rem 0;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    p {
+      margin: 0.3rem 0 0;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .dashboard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0 1rem 2rem 1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    .viz-box {
+      background: #fdfdfd;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+
+    .half-width {
+      flex: 1 1 calc(50% - 0.75rem); /* Two items per row with gap */
+      min-width: 0;
+    }
+
+    .full-width {
+      width: 100%; /* Full width for larger charts */
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #283593;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="a4-poster">
+    <header>
+      <h1>Financial and Cryptocurrency Dashboard</h1>
+      <p>Exploring Bitcoin Trends, Global Ownership, and Asset Returnss</p>
+    </header>
+
+    <div class="dashboard">
+      <div class="row">
+        <div class="viz-box full-width">
+          <h2>Global Cryptocurrency Ownership</h2>
+          <div id="map_vis"></div>
+        </div>
+        <div class="viz-box full-width">
+          <h2>Top Countries by Ownership</h2>
+          <div id="bar_vis"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="viz-box full-width">
+          <h2>Global Cryptocurrency Ownership</h2>
+          <div id="brush_vis"></div>
+        </div>
+        <div class="viz-box full-width">
+          <h2>Top Countries by Ownership</h2>
+          <div id="smallmultiple_vis"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
