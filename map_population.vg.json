@@ -2,14 +2,6 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 800,
   "height": 400,
-  "title": {
-    "text": "Cryptocurrency Ownership by Country",
-    "anchor": "middle",
-    "fontSize": 22,
-    "fontWeight": "bold",
-    "font": "serif",
-    "dy": -10
-  },
   "projection": {"type": "equalEarth"},
   "layer": [
     {
