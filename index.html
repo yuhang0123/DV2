@@ -12,20 +12,13 @@
 
   <!-- Simple Styles -->
   <style>
-    /* A4-friendly styling */
-    @media print {
-      body {
-        margin: 0;
-        padding: 0;
-      }
-    }
     html, body {
       margin: 0;
       padding: 0;
-      overflow-x: hidden; /* Prevent horizontal scroll */
+      overflow-x: hidden;
     }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: sans-serif;
       background: #f5f6fa;
       color: #222;
       display: flex;
@@ -34,7 +27,7 @@
 
     /* A4 Poster Container */
     .a4-poster {
-      width: 100%; /* A4 width */
+      width: 100%;
       min-height: 297mm; /* A4 height */
       background: white;
       box-shadow: 0 0 20px rgba(0,0,0,0.15);
@@ -55,7 +48,8 @@
 
     h1 {
       margin: 0;
-      font-size: 1.8rem;
+      font-size: 5rem;
+      font-family: serif;
     }
 
     p {
@@ -69,7 +63,7 @@
       flex-direction: column;
       align-items: center;
       gap: 1.5rem;
-      padding: 0 1rem 2rem 1rem;
+      padding: 0 25rem 2rem 25rem;
       width: 100%;
       box-sizing: border-box;
     }
@@ -82,6 +76,7 @@
     }
 
     .viz-box {
+      width: 100%;
       background: #fdfdfd;
       border: 1px solid #eee;
       border-radius: 8px;
@@ -90,21 +85,18 @@
       box-sizing: border-box;
     }
 
-    .half-width {
-      flex: 1 1 calc(50% - 0.75rem); /* Two items per row with gap */
-      min-width: 0;
-    }
-
-    .full-width {
-      width: 100%; /* Full width for larger charts */
-    }
-
     h2 {
       text-align: center;
-      font-size: 1.2rem;
+      font-size: 3rem;
       color: #283593;
       margin-top: 0.5rem;
       margin-bottom: 1rem;
+      font-family: serif;
+    }
+
+    footer a {
+      color: #283593;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -112,37 +104,44 @@
 
   <div class="a4-poster">
     <header>
-      <h1>Financial and Cryptocurrency</h1>
-      <p>Exploring Bitcoin Trends, Global Ownership, and Asset Returns</p>
+      <h1>Bitcoin Ownership and Trend</h1>
     </header>
 
     <div class="dashboard">
       <div class="row">
-        <div class="viz-box full-width">
-          <h2>Global Cryptocurrency Ownership</h2>
+        <div class="viz-box">
+          <h2>Global Bitcoin Ownership</h2>
           <div id="map_vis"></div>
         </div>
-        <div class="viz-box full-width">
-          <h2>Top Countries by Ownership</h2>
+        <div class="viz-box">
+          <h2>Bitcoin Ownership by Continent</h2>
           <div id="bar_vis"></div>
         </div>
       </div>
 
       <div class="row">
-        <div class="viz-box full-width">
-          <h2>Global Cryptocurrency Ownership</h2>
+        <div class="viz-box">
+          <h2>Bitcoin Annual Return (2014-2025)</h2>
           <div id="brush_vis"></div>
         </div>
-        <div class="viz-box full-width">
-          <h2>Top Countries by Ownership</h2>
+        <div class="viz-box">
+          <h2>Annual Return of Different Investment Assets (2021–2023)</h2>
           <div id="smallmultiple_vis"></div>
         </div>
       </div>
     </div>
+
+    <footer>
+      <span><strong>Author:</strong> Yu Hang Yeong</span>
+      <span><strong>Date:</strong> 21 October 2025</span>
+      <span><strong>Data Source:</strong> 
+        <a href="https://worldpopulationreview.com/country-rankings/bitcoin-ownership-by-country">Global Bitcoin Ownership, </a>
+        <a href="https://www.visualcapitalist.com/bitcoin-returns-vs-major-asset-classes/">Return of Different Assets, </a>
+        <a href="https://www.slickcharts.com/currency/BTC/returns">Bitcoin Annual Return</a>
+      </span>
+    </footer>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
-
