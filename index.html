@@ -76,13 +76,19 @@
     }
 
     .viz-box {
-      width: 100%;
+      width: 50%;
       background: #fdfdfd;
       border: 1px solid #eee;
       border-radius: 8px;
       box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
       padding: 1rem;
       box-sizing: border-box;
+    }
+
+    .viz-box > div {
+      display: flex;
+      justify-content: center;  /* centers Vega chart within the box */
+      width: 100%;
     }
 
     h2 {
@@ -113,6 +119,9 @@
           <h2>Global Bitcoin Ownership</h2>
           <div id="map_vis"></div>
         </div>
+      </div>
+
+      <div class="row">
         <div class="viz-box">
           <h2>Bitcoin Ownership by Continent</h2>
           <div id="bar_vis"></div>
@@ -124,11 +133,15 @@
           <h2>Bitcoin Annual Return (2014-2025)</h2>
           <div id="brush_vis"></div>
         </div>
+      </div>
+
+      <div class="row">
         <div class="viz-box">
           <h2>Annual Return of Different Investment Assets (2021–2023)</h2>
           <div id="smallmultiple_vis"></div>
         </div>
       </div>
+
     </div>
 
     <footer>
