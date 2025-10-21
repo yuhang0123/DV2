@@ -7,11 +7,14 @@
     {
       "width": 800,
       "height": 600,
-      "title": "Bitcoin Annual Return (2014–2025)",
       "transform": [{"filter": {"param": "year_brush"}}],
       "layer": [
         {
-          "mark": {"type": "line", "point": true, "color": "yellow"},
+          "mark": {
+            "type": "line", 
+            "color": "red",
+            "point": {"filled": true, "color": "darkorange", "size": 75}
+          },
           "encoding": {
             "x": {"field": "Year", "type": "ordinal", "title": "Year"},
             "y": {"field": "Return", "type": "quantitative", "title": "Annual Return (%)"},
@@ -27,9 +30,9 @@
             "align": "left",
             "dx": 25,
             "dy": -20,
-            "color": "#ff3333",
-            "fontSize": 13,
-            "fontWeight":"bold"
+            "color": "dark",
+            "fontSize": 15,
+            "fontWeight":"lighter"
           },
           "encoding": {
             "x": {"datum": 2017},
